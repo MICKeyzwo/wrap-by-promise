@@ -1,6 +1,6 @@
 {
   "name": "wrap-by-promise",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "description": "wrap function to receive callback by promise",
   "main": "./lib/wrap-by-promise.js",
