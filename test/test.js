@@ -1,27 +1,32 @@
-//require wrap-by-promise
-const wrapByPromise = require("../lib/wrap-by-promise");
+// require wrap-by-promise
+const wrap = require("../build/wrap-by-promise").wrapByPromise;
 
-//fs.readFile : function to receive callback...
+// fs.readFile : function to receive callback...
 const { readFile } = require("fs");
-readFile("./hello.txt", "utf-8", (err, data) => {
+readFile("./test/hello.txt", "utf-8", (err, data) => {
     if (err) throw err;
     console.log({ data });
 });
 
-//let's wrap above function!
-const _readfile = wrapByPromise(readFile, 2, true);
+// let's wrap above function!
+// wrap-by-promise works like util.promisify as default.
+const _readfile = wrap(readFile);
 
-//and exec promise!
-_readfile("./hello.txt", "utf-8")
-.then(res => console.log({ res }))
-.catch(err => { throw err; });
+// and get promise!
+_readfile("./test/hello.txt", "utf-8")
+    .then(res => console.log({ res }))
+    .catch(err => { throw err; });
 
-//also, it's able to use in asyn function!
+// it's able to use in async function with await!
 (async _ => {
     try {
-        const data = await _readfile("./hello.txt", "utf-8");
+        const data = await _readfile("./test/hello.txt", "utf-8");
         console.log({ data })
     } catch (e) {
         throw e;
     }
 })();
+
+// also, you can promisify a function which NOT apply to common error-first callback style!
+const sleep = wrap(setTimeout, 0);
+sleep(3000).then(_ => console.log("Hi!"));

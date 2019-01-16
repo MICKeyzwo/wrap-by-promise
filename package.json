@@ -1,15 +1,16 @@
 {
   "name": "wrap-by-promise",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "private": false,
-  "description": "wrap function to receive callback by promise",
-  "main": "./lib/wrap-by-promise.js",
+  "description": "wrap-by-promise promisify a function to receive callback",
+  "main": "./build/wrap-by-promise.js",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "build": "tsc --outDir ./build --lib ES6 ./src/wrap-by-promise.ts"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/MICKeyzwo/wrap-by-promise/issues"
   },
-  "homepage": "https://github.com/MICKeyzwo/wrap-by-promise#readme"
+  "homepage": "https://github.com/MICKeyzwo/wrap-by-promise#readme",
+  "devDependencies": {
+    "@types/es6-promise": "^3.3.0",
+    "typescript": "^3.2.2"
+  }
 }

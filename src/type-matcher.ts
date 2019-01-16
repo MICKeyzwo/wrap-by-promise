@@ -1,8 +1,8 @@
 "use strict";
 
-const getType = require("./type-getter.js");
+import { getType } from "./type-getter";
 
-const typeMatch = (args, patterns, other) => {
+export const typeMatch = (args: Array<string>, patterns, other?: Function) => {
     const pat = {};
     Object.keys(patterns).forEach(p => {
         let _p = p.replace(/\s/g, "");
@@ -23,5 +23,3 @@ const typeMatch = (args, patterns, other) => {
     }
     if (typeof other == "function") other(...args);
 }
-
-module.exports = typeMatch;
